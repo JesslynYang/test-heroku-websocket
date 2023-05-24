@@ -1,10 +1,20 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
+const cors = require('cors')
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
+
+app.use(cors())
+
+app.get('/', (req, res) => {
+    return res.status(200).json({
+        title: "Express Testing",
+        message: "The app is working properly!",
+    });
+})
 
 // WebSocket server
 wss.on('connection', (ws) => {
