@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebSocket Client</title>
+</head>
+
+<body>
+    <h1>WebSocket Client</h1>
+    <button id="button">Click Me</button>
+
+    <script>
+        const button = document.getElementById('button');
+        // const socket = new WebSocket('wss://your-heroku-app.herokuapp.com');
+        const socket = new WebSocket('ws://localhost:3000');
+
+        socket.addEventListener('open', () => {
+            console.log('Connected to WebSocket server');
+        });
+
+        socket.addEventListener('message', (event) => {
+            console.log(`Received message from server: ${event.data}`);
+        });
+
+        button.addEventListener('click', () => {
+            socket.send('Button clicked');
+        });
+    </script>
+</body>
+
+</html>
